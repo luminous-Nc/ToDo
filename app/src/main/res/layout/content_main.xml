@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="today"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="future"
+            android:textColor="#cbcaca"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/read_top"
+            android:layout_width="0dp"
+            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:text="read"
+            android:textColor="#cbcaca"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+
+        <TextClock
+            android:id="@+id/time_today"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#eeeeee"
+            android:textSize="90sp"
+            android:format24Hour="HH:mm"
+            android:format12Hour="hh:mm" />
+        <TextView
+            android:id="@+id/time_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="你今天还有 2 件事没有做"
+            android:textColor="#eeeeee"
+            android:textSize="28sp" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:layout_marginLeft="20dp"
+        android:id="@+id/iftodo_today"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal" />
+    <TextView
+        android:id="@+id/timetodo_today"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="14:59"
+
+        />
+    <TextView
+        android:id="@+id/tasktodo_today"
+        android:layout_marginTop="3dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="读《他改变了中国》"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:textSize="20sp"
+        android:layout_weight="7"
+        android:textColor="#333333"/>
+
+</LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/timetodo_today"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="17:00"
+
+            />
+        <TextView
+            android:id="@+id/tasktodo_today"
+            android:layout_marginTop="3dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="参加小组讨论"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:layout_weight="7"
+            android:textColor="#333333"/>
+
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="20dp"
+        android:id="@+id/task_today"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
+
+
+
+</LinearLayout>
+

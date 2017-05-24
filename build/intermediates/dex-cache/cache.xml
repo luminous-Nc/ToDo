@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_42ba1895caf8742e0c5b2d057b2a238784a07285\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\90418\.android\build-cache\9eb8f63c8b4a8213242d36aae045ce96be7fccbe\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_650cf6981e0bc8bbabb7c0f85e537b7fc6a64dac\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="304e88f0e080de8486f9c3f107eda5219eb28a4d">
+        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ae701fe48490db9c151eeb66e720c31b50e3f9bd\classes.dex" />
+    </item>
+
+</items>
