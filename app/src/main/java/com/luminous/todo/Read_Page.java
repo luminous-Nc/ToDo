@@ -6,9 +6,12 @@ public class Read_Page {
 
     private String pageSummary;
 
-    public Read_Page(String pageArticle,String pageSummary) {
+    private String pageURL;
+
+    public Read_Page(String pageArticle,String pageSummary,String pageURL) {
         this.pageArticle=pageArticle;
         this.pageSummary=pageSummary;
+        this.pageURL=pageURL;
 
     }
     public String getPageArticle(){
@@ -17,5 +20,6 @@ public class Read_Page {
     public String getPageSummary(){
         return pageSummary;
     }
+    public String getPateURL() {return pageURL;}
 }
 

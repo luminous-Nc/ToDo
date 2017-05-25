@@ -3,6 +3,7 @@
     package="com.luminous.todo">
 
     <application
+        android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,17 +12,27 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="Today"
+            android:label="ToDo"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/TodayTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ReadLater"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/ReadLaterTheme"/>
+        <activity
+            android:name=".ReadData"
+            android:label="@string/title_activity_read_data"
+            android:theme="@style/ReadDataTheme" />
+        <activity
+            android:name=".AddPage"
+            android:label="新内容"
+            android:theme="@style/AddPageTheme">
         </activity>
     </application>
 
