@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp">
+
+    <Button
+        android:id="@+id/pop_edit"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:background="#b2dfdb"
+        android:text="编辑"
+        android:textColor="#99000000"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/pop_delete"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:background="#4db6ac"
+        android:layout_toRightOf="@+id/pop_edit"
+        android:textSize="20sp"
+        android:textColor="#99000000"
+        android:text="删除" />
+
+</RelativeLayout>

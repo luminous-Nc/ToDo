@@ -14,17 +14,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Date;
 import java.util.Random;
 
 
 
 public class ReadData extends AppCompatActivity {
-
+    public static final String PAGE_ID = "pageID";
     public static final String PAGE_ARTICLE="pageArticle";
     public static final String PAGE_SUMMARY="pageSummary";
     public static final String PAGE_URL="pageURL";
-    public  String  longword;
-
+    public static final String PAGE_DATE="pageDate";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +34,14 @@ public class ReadData extends AppCompatActivity {
         String pageArticle = pageFront.getStringExtra(PAGE_ARTICLE);
         String pageSummary = pageFront.getStringExtra(PAGE_SUMMARY);
         String pageURL = pageFront.getStringExtra(PAGE_URL);
+        String pageDateString = pageFront.getStringExtra(PAGE_DATE);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)
                 findViewById(R.id.collapsing_toolbar);
+
         TextView readDataShow = (TextView)findViewById(R.id.read_data_show);
         ImageView readDataPic = (ImageView)findViewById(R.id.read_data_pic);
 
@@ -49,24 +53,29 @@ public class ReadData extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(pageArticle);
 
         Random random = new Random();
-        int order = random.nextInt(3)+1;
+        int order = random.nextInt(8)+1;
         StringBuilder builder = new StringBuilder();
+        readDataShow.setText(pageSummary+ "\n"+pageDateString+"\n"+pageURL);
         switch (order){
-            case 1: readDataShow.setText(pageSummary+ "\n"+pageURL+"\n\n\n"+LongText.heibai);
-                       Glide.with(ReadData.this).load(R.drawable.luna).into(readDataPic);
-                       break;
-            case 2:readDataShow.setText(pageSummary+ "\n"+pageURL+"\n\n\n"+LongText.mianchaodahai);
-                Glide.with(ReadData.this).load(R.drawable.miku).into(readDataPic);
+            case 1:Glide.with(ReadData.this).load(R.drawable.luna).into(readDataPic);
+                   break;
+            case 2:Glide.with(ReadData.this).load(R.drawable.miku).into(readDataPic);
                 break;
-            case 3:readDataShow.setText(pageSummary+ "\n"+pageURL+"\n\n\n"+LongText.shiguang);
-                Glide.with(ReadData.this).load(R.drawable.yamoto).into(readDataPic);
+            case 3:Glide.with(ReadData.this).load(R.drawable.yamoto).into(readDataPic);
+                break;
+            case 4:Glide.with(ReadData.this).load(R.drawable.black).into(readDataPic);
+                break;
+            case 5:Glide.with(ReadData.this).load(R.drawable.ballon).into(readDataPic);
+                break;
+            case 6:Glide.with(ReadData.this).load(R.drawable.dark).into(readDataPic);
+                break;
+            case 7:Glide.with(ReadData.this).load(R.drawable.green).into(readDataPic);
+                break;
+            case 8:Glide.with(ReadData.this).load(R.drawable.star).into(readDataPic);
                 break;
             default:
                 break;
         }
-
-
-
     }
 
     @Override

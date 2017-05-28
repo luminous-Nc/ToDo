@@ -24,7 +24,7 @@
         <activity
             android:name=".ReadLater"
             android:launchMode="singleTask"
-            android:theme="@style/ReadLaterTheme"/>
+            android:theme="@style/ReadLaterTheme" />
         <activity
             android:name=".ReadData"
             android:label="@string/title_activity_read_data"
@@ -32,8 +32,8 @@
         <activity
             android:name=".AddPage"
             android:label="新内容"
-            android:theme="@style/AddPageTheme">
-        </activity>
+            android:theme="@style/AddPageTheme"></activity>
+        <activity android:name=".ChangePage"></activity>
     </application>
 
 </manifest>
