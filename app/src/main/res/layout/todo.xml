@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTodoPrimary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextClock
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:textSize="30sp"
+            android:textColor="@color/text_clock"
+            android:layout_weight="0.05"
+            android:gravity="center"
+            android:id="@+id/textClock"
+            android:background="@color/todo_background"
+            android:visibility="gone"
+            tools:targetApi="jelly_bean_mr1" />
+
+
+        <com.luminous.doit.fragToDo.clock.ClockView
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:id="@+id/clock"
+            android:layout_height="@dimen/size_clock"
+            android:background="@color/todo_background"/>
+        <TextView
+            android:id="@+id/text_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:text="你今天还有 2 件事没有做"
+            android:textColor="#eeeeee"
+            android:textSize="28sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recycle"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:background="@color/cardview_background"
+            />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/add"
+        android:id="@+id/insert_button"
+        />
+</FrameLayout>

@@ -3,66 +3,30 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\90418\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_0f9fc16ca1ad33578d854b7698359783beebfcb9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\90418\.android\build-cache\a2d177f8101ade516cebebb3abd6ecff9ea3bc83\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="e41d9559ad6bf25895502594b3f56eb4a3569daf">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_310d39ad0f7181b63e785b77ae3e28555271ccf0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\90418\.android\build-cache\9eb8f63c8b4a8213242d36aae045ce96be7fccbe\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_650cf6981e0bc8bbabb7c0f85e537b7fc6a64dac\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\90418\.android\build-cache\01cc11e8a977c7dd81f89653220df49a66619d1f\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="2ed5d8f90fadbfa1098d859cda836de0dc31d265">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_941d1b3e3184b5ccb4d730a5eb6c9facc7a871e9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="5eb2ee9f1a50692828874e95cfd5db20ac70b50f">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ae701fe48490db9c151eeb66e720c31b50e3f9bd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\90418\Desktop\DoIt\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_42ba1895caf8742e0c5b2d057b2a238784a07285\classes.dex" />
+        <dex dex="C:\Users\90418\Desktop\DoIt\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_fdfa13df6caaf7f42f1f2f11132a0655e55c36b3\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\90418\.android\build-cache\5a782408e89c560ada2eac19e9fef7ed76df8b3a\output\jars\classes.jar"
+        jar="C:\Users\90418\Desktop\DoIt\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
-        <dex dex="C:\Users\90418\Desktop\X\Android_Development\ToDo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_44d51589af79bd6ebe64d12c08c42fda64b03563\classes.dex" />
+        sha1="942d09ca0ed393c9ca82a472a007c5f660c377e1">
+        <dex dex="C:\Users\90418\Desktop\DoIt\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cba7f4360cceb7c07298d76677cb2b489d7ac1dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\90418\.android\build-cache\0f3a3c990fa6b3c89f5cb4e2139430f9670d5165\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="C:\Users\90418\Desktop\DoIt\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d3ac32140cd75a71b75b4d88f762b1568df5f2ab\classes.dex" />
     </item>
 
 </items>

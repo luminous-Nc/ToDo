@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.luminous.todo.AddPage"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/read_share_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    </android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/read_share_article"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="25sp"
+        android:hint="请输入标题"
+        android:textColorHint="#99000000"/>
+
+    <EditText
+        android:id="@+id/read_share_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="添加内容摘要..."
+        android:background="@null"
+        android:textSize="20sp"
+        android:paddingLeft="8sp"
+        android:textColorHint="#99000000"
+        style="?android:attr/textViewStyle"></EditText>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/read_share_URL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:hint="添加文章地址URL..."
+            android:textSize="20sp"
+            android:layout_gravity="bottom"
+            android:textColorHint="#99000000"/>
+    </FrameLayout>
+
+</LinearLayout>

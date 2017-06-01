@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/read_add_sure"
-        android:title="确定"
+        android:title="创建"
         android:textSize="40sp"
         app:showAsAction="always"/>
 </menu>

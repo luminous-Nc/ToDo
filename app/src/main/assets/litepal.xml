@@ -3,7 +3,7 @@
     <dbname value = "ReadPage"></dbname>
     <version value="1"></version>
     <list>
-        <mapping class="com.luminous.todo.Read_Page">
+        <mapping class="com.luminous.doit.fragToRead.page.Read_Page">
         </mapping>
     </list>
 

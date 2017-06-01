@@ -5,19 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.luminous.todo.ReadData"
+    tools:context="com.luminous.doit.fragToRead.ReadData"
     tools:showIn="@layout/activity_read_data">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/read_data_show"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
+
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
+        android:text="string/large_text"
         android:textSize="20sp"/>
+        <WebView
+            android:id="@+id/read_show_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </WebView>
 
     </LinearLayout>
 
