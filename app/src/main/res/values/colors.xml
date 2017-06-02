@@ -14,8 +14,10 @@
     <color name="cardview_background">#eeeeee</color>
     <color name="text_clock">#eeeeee</color>
     <color name="message_line">#bd9d752e</color>
-    <color name="message_when_press">#bebebe</color>
+    <color name="message_when_press">#c5cae9</color>
     <color name="message_when_normal">#ffffff</color>
+    <color name="page_when_press">#b2dfdb</color>
+    <color name="page_when_normal">#ffffff</color>
     <color name="message_when_checked">#f3a4a3a3</color>
     <color name="message_when_not_checked">#f3181717</color>
     <color name="todo_background">#3f51b5</color>

@@ -73,4 +73,22 @@ public class MessHandler  {
             database.execSQL(sql);
             database.close();
         }
+    public int findFalseMessageCount(){
+        SQLiteDatabase database = helper.getWritableDatabase();
+        Calendar c = Calendar.getInstance();
+        String thisdate = c.get(Calendar.YEAR)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DAY_OF_MONTH);
+        Log.e("thisdate",thisdate);
+        Cursor cursor = database.query("message",null," date = '"+thisdate+"' and finish = 'false' ",null,null,null," startTime",null);
+        int count = 0;
+        if(cursor.moveToFirst()){
+            Log.e("findData","don't do");
+            do {
+                count++;
+            }while (cursor.moveToNext());
+        }
+        database.close();
+        Log.e("findData","Done");
+        return count;
+    }
+
 }

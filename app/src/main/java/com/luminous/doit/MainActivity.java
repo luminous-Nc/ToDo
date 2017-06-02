@@ -1,5 +1,7 @@
 package com.luminous.doit;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +13,8 @@ import android.widget.LinearLayout;
 import com.luminous.doit.fragToRead.FragToRead;
 import com.luminous.doit.fragToDo.FragToDo;
 import java.util.ArrayList;
+
+import static com.luminous.doit.R.id.toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> frags = new ArrayList<Fragment>();
@@ -50,9 +54,13 @@ public class MainActivity extends AppCompatActivity {
         switch (position){
             case 0:
                 linearLayout.setBackgroundResource(R.color.todo_background);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.todo_background));}
                 break;
             case 1:
                 linearLayout.setBackgroundResource(R.color.toread_background);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.toread_background));}
                 break;
         }
     }
@@ -81,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         };
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        //tabLayout.OnTabSelectedListener
         viewPager.setCurrentItem(0);
     }
+    //int colorFrom = linearLayout.getDrawingCacheBackgroundColor();
+    //int colorTo =
+    //ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.luminous.todo.AddPage"
+    tools:context="com.luminous.doit.fragToRead.pageEdit.AddPage"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/read_add_toolbar"
@@ -53,6 +53,7 @@
         android:layout_marginRight="12dp"
         android:hint="添加文章地址URL..."
         android:textSize="20sp"
+        android:maxLines="3"
         android:layout_gravity="bottom"
         android:textColorHint="#99000000"/>
     </FrameLayout>

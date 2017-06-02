@@ -3,10 +3,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,6 +65,8 @@ public class FragToRead extends Fragment {
         readlist.setAdapter(adapter_page);//recyclist绑定适配器adapterpage
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());//构造了一个管理器实例layoutManger
         readlist.setLayoutManager(layoutManager);//recyclist绑定管理器layoutManger
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)
+                layoutToRead.findViewById(R.id.toreadtab_collapsing_toolbar);
 
         mPop = new PopOptionUtil(getContext());
 
@@ -74,6 +78,7 @@ public class FragToRead extends Fragment {
 
                     @Override
                     public void onItemLongClick(View view, final int position) {
+
                         mPop.setOnPopClickEvent(new PopOptionUtil.PopClickEvent() {
                             @Override
                             public void onPreClick(){
@@ -86,9 +91,10 @@ public class FragToRead extends Fragment {
                                 openChangePage.putExtra(ChangePage.ID,page.getId());
 
                                 startActivity(openChangePage);
+                                mPop.isShowing();
                                 mPop.dismiss();
-
                             }
+
                             @Override
                             public void onNextClick() {
                                 //删除item
@@ -101,10 +107,12 @@ public class FragToRead extends Fragment {
                                 adapter_page.notifyItemRemoved(position);//显示移除的动画
                                 adapter_page.notifyItemRangeChanged(0, pageList.size());//对于被删掉的位置及其后range大小范围内的view进行重新onBindViewHolder
                                 // 这个需要设置，因为删除后item的position会改变
+                                mPop.isShowing();
                                 mPop.dismiss();
                             }
                         });
                         mPop.show(view);
+                        mPop.dismiss();
                     }
                 }));
         FloatingActionButton readAdd = (FloatingActionButton)layoutToRead.findViewById(R.id.read_add);
