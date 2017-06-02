@@ -58,7 +58,7 @@ public class FragToDo extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             //阻止继续滑动
-            if(recyclerView.getTop()>1060||recyclerView.getTop()<200)
+            if(recyclerView.getTop()>1060||recyclerView.getTop()<300)
                 scroll = false;
             //向上滑动
             if(msg.what==SCROLL_UP){
@@ -109,13 +109,13 @@ public class FragToDo extends Fragment {
                         Log.e("r", String.valueOf(r));
                         Log.e("top", String.valueOf(recyclerView.getTop()));
                         //在滑动过程中超过了上界，则直接设置效果
-                        if(r<200&&clockView.getVisibility()==View.VISIBLE){
+                        if(r<300&&clockView.getVisibility()==View.VISIBLE){
                             Message m = new Message();
                             m.what = SET_TIME;
                             handler.sendMessage(m);
                         }
                         //所有滑动的范围
-                        if(r>=190&&r<1066){
+                        if(r>=300&&r<1066){
                             //控件为时钟时
                             if(clockView.getVisibility()==View.VISIBLE){
                                 recyclerView.layout(recyclerView.getLeft(),r,recyclerView.getRight(),recyclerView.getBottom());
@@ -149,7 +149,7 @@ public class FragToDo extends Fragment {
                                 scroll();
                             }else {
                                 //回到原位
-                                recyclerView.layout(recyclerView.getLeft(),200,recyclerView.getRight(),recyclerView.getBottom());
+                                recyclerView.layout(recyclerView.getLeft(),300,recyclerView.getRight(),recyclerView.getBottom());
                             }
                         }
                         break;

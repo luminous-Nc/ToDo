@@ -33,7 +33,7 @@
         <TextView
             android:id="@+id/text_welcome"
             android:layout_width="match_parent"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:text="你今天还有 2 件事没有做"

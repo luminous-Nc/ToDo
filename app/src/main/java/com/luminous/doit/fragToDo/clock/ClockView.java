@@ -67,7 +67,7 @@ public class ClockView extends View {
         numberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         numberPaint.setColor(ContextCompat.getColor(getContext(),R.color.clockNumber));
         numberPaint.setStrokeWidth(1);
-        numberPaint.setTextSize(30);//数字的大小
+        numberPaint.setTextSize(40);//数字的大小
     }
 
     @Override
@@ -130,7 +130,8 @@ public class ClockView extends View {
                 //时针刻度
                 canvas.drawLine(hourStartPoint.getX(),hourStartPoint.getY(),hourEndPoint.getX(),hourEndPoint.getY(),circlePaint);
                 //画数字，需在时针刻度末端加30(距离圆边缘的距离
-                canvas.drawText(clockNumber,circleX-numberPaint.measureText(clockNumber)/2,hourEndPoint.getY()+20,numberPaint);
+                if (i%15==0){
+                canvas.drawText(clockNumber,circleX-numberPaint.measureText(clockNumber)/2,hourEndPoint.getY()+40,numberPaint);}
             } else{
                 //画分针刻度
                 canvas.drawLine(startPoint2.getX(),startPoint2.getY(),endPoint2.getX(),endPoint2.getY(),circlePaint);

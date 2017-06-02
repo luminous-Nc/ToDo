@@ -17,8 +17,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.luminous.doit.R;
-import com.luminous.doit.fragToRead.Popwindow.PopOptionUtil;
-import com.luminous.doit.fragToRead.Popwindow.RecyclerItemClickListener;
+
 import com.luminous.doit.fragToRead.page.PageAdapter;
 import com.luminous.doit.fragToRead.page.Read_Page;
 import com.luminous.doit.fragToRead.pageEdit.AddPage;
@@ -39,7 +38,7 @@ public class FragToRead extends Fragment {
 
     private List<Read_Page> pageList= new ArrayList<>();//pageList是含有若干Page类的数组,是page类经过修饰加工后生成的
     private PageAdapter adapter_page;//适配器 这里写了下面就不能写PageAdapter类名 否则会有空对象
-    PopOptionUtil mPop;
+    //PopOptionUtil mPop;
 
     LayoutToRead layoutToRead;
     public FragToRead(Context context){
@@ -68,9 +67,9 @@ public class FragToRead extends Fragment {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)
                 layoutToRead.findViewById(R.id.toreadtab_collapsing_toolbar);
 
-        mPop = new PopOptionUtil(getContext());
+        //mPop = new PopOptionUtil(getContext());
 
-        readlist.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), readlist,
+        /*readlist.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), readlist,
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
@@ -114,7 +113,7 @@ public class FragToRead extends Fragment {
                         mPop.show(view);
                         mPop.dismiss();
                     }
-                }));
+                }));*/
         FloatingActionButton readAdd = (FloatingActionButton)layoutToRead.findViewById(R.id.read_add);
         readAdd.setOnClickListener(new View.OnClickListener(){
             @Override
