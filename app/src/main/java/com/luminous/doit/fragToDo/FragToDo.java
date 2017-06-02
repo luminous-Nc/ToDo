@@ -37,7 +37,7 @@ public class FragToDo extends Fragment {
     //文字控件
     private TextClock textClock;
 
-    public  TextView textWelcome;
+    private TextView textWelcome;
     //用于线程类停止滑动，防止出现滑动过界
     private int countTodo;
     private volatile boolean scroll=true;
@@ -85,7 +85,6 @@ public class FragToDo extends Fragment {
     };
     public FragToDo(Context context){
         layoutTodo= new LayoutTodo(context);
-        messHandler = new MessHandler(context);
         initView(context);
         initEvent();
     }
@@ -171,9 +170,8 @@ public class FragToDo extends Fragment {
         clockView = (ClockView) layoutTodo.findViewById(R.id.clock );
         textClock = (TextClock) layoutTodo.findViewById(R.id.textClock);
         textWelcome=(TextView)layoutTodo.findViewById(R.id.text_welcome);
-        countTodo=messHandler.findFalseMessageCount();
-        if (countTodo==0){textWelcome.setText("添加今天要做的事情吧");}
-        else{textWelcome.setText("你今天还有"+countTodo+"件事没有做");}
+        //countTodo=messHandler.findFalseMessageCount();
+        //textWelcome.setText("你今天还有"+countTodo);
         button = (FloatingActionButton) layoutTodo.findViewById(R.id.insert_button);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
@@ -225,11 +223,6 @@ public class FragToDo extends Fragment {
         //这里写出当Fragment开始时设置Message
         Log.e("fragTay","start");
         adapter.initMessages();
-        textWelcome=(TextView)layoutTodo.findViewById(R.id.text_welcome);
-        countTodo=messHandler.findFalseMessageCount();
-        if (countTodo==0){textWelcome.setText("添加要做的事情吧");}
-        else{textWelcome.setText("你今天还有"+countTodo+"件事没有做");}
-
     }
     private class LayoutTodo extends LinearLayout {
         public LayoutTodo(Context context) {
