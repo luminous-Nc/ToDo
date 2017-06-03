@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
                     getWindow().setStatusBarColor(getResources().getColor(R.color.todo_background));}
                 break;
             case 1:
-                linearLayout.setBackgroundResource(R.color.toread_background);
+                linearLayout.setBackgroundResource(R.color.toread_background_tree);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor(getResources().getColor(R.color.toread_background));}
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.toread_background_tree));}
                 break;
         }
     }

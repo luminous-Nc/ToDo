@@ -18,8 +18,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.luminous.doit.R;
-import com.luminous.doit.fragToRead.Popwindow.PopOptionUtil;
-import com.luminous.doit.fragToRead.Popwindow.RecyclerItemClickListener;
 import com.luminous.doit.fragToRead.page.PageAdapter;
 import com.luminous.doit.fragToRead.page.Read_Page;
 import com.luminous.doit.fragToRead.pageEdit.AddPage;
@@ -31,19 +29,18 @@ import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
 import static com.luminous.doit.MainActivity.ifNew;
-import static org.litepal.LitePalApplication.getContext;
+
 
 
 public class FragToRead extends Fragment {
+    private WeatherAnimView weather;
+    private GyroscopeObserver gyroscopeObserver;
 
     public static final String TAG = "ReadLater";
 
     private List<Read_Page> pageList= new ArrayList<>();//pageList是含有若干Page类的数组,是page类经过修饰加工后生成的
     private PageAdapter adapter_page;//适配器 这里写了下面就不能写PageAdapter类名 否则会有空对象
-    PopOptionUtil mPop;
 
     LayoutToRead layoutToRead;
     public FragToRead(Context context){
@@ -62,10 +59,13 @@ public class FragToRead extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         LitePal.getDatabase();
+        weather = (WeatherAnimView) layoutToRead.findViewById(R.id.weather);
+        gyroscopeObserver = new GyroscopeObserver();
+        weather.setGyroscopeObserver(gyroscopeObserver);
 
         initPages();
 
-        adapter_page = new PageAdapter(pageList);//构造了一个适配器的实例adapter_page
+        adapter_page = new PageAdapter(pageList,this);//构造了一个适配器的实例adapter_page
         final RecyclerView readlist = (RecyclerView) layoutToRead.findViewById(R.id.read_list);
         readlist.setAdapter(adapter_page);//recyclist绑定适配器adapterpage
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());//构造了一个管理器实例layoutManger
@@ -73,55 +73,6 @@ public class FragToRead extends Fragment {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)
                 layoutToRead.findViewById(R.id.toreadtab_collapsing_toolbar);
 
-        mPop = new PopOptionUtil(getContext());
-
-        readlist.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), readlist,
-                new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                    }
-
-                    @Override
-                    public void onItemLongClick(View view, final int position) {
-
-                        mPop.setOnPopClickEvent(new PopOptionUtil.PopClickEvent() {
-                            @Override
-                            public void onPreClick(){
-
-                                Read_Page page = pageList.get(position);//mRead_Page 类表中的具体一个类
-                                Intent openChangePage = new Intent (getActivity(),ChangePage.class);
-                                openChangePage.putExtra(ChangePage.PAGE_ARTICLE, page.getPageArticle());
-                                openChangePage.putExtra(ChangePage.PAGE_SUMMARY, page.getPageSummary());
-                                openChangePage.putExtra(ChangePage.PAGE_URL, page.getPateURL());
-                                openChangePage.putExtra(ChangePage.ID,page.getId());
-
-                                startActivity(openChangePage);
-
-                                mPop.dismiss();
-                                Log.e("pop","dismiss");
-                            }
-
-                            @Override
-                            public void onNextClick() {
-                                //删除item
-                                int id = pageList.get(position).getId();
-                                String pageArticle = pageList.get(position).getPageArticle();
-                                deleteData(id);
-
-                                pageList.remove(position);//把数据从pagelist中remove掉
-
-                                adapter_page.notifyItemRemoved(position);//显示移除的动画
-                                adapter_page.notifyItemRangeChanged(0, pageList.size());//对于被删掉的位置及其后range大小范围内的view进行重新onBindViewHolder
-                                // 这个需要设置，因为删除后item的position会改变
-
-                                mPop.dismiss();
-                                Log.e("pop","dismiss");
-                            }
-                        });
-                        mPop.show(view);
-
-                    }
-                }));
         FloatingActionButton readAdd = (FloatingActionButton)layoutToRead.findViewById(R.id.read_add);
         readAdd.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -129,7 +80,8 @@ public class FragToRead extends Fragment {
                 Intent openAddPage = new Intent (getActivity(),AddPage.class);
                 startActivity(openAddPage);
             }
-        }); return layoutToRead;
+        });
+        return layoutToRead;
        }
 
         private void initPages(){
@@ -157,9 +109,13 @@ public class FragToRead extends Fragment {
         List<Read_Page> newList = DataSupport.order("pageDate desc").find(Read_Page.class);
         pageList.addAll(newList);//注意要将数据复制过来，而不是直接使用，不然无法更新数据
         adapter_page.notifyDataSetChanged();
+        gyroscopeObserver.register(getActivity());
     }
-    public void deleteData(int id){
-        Log.d(TAG,"delete:"+id);
-        DataSupport.deleteAll(Read_Page.class, "id = ?",String.valueOf(id));
+    @Override
+    public void onPause() {
+        super.onPause();
+        gyroscopeObserver.unregister();
+
     }
+
 }

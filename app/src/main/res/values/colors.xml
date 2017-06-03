@@ -22,6 +22,7 @@
     <color name="message_when_not_checked">#f3181717</color>
     <color name="todo_background">#3f51b5</color>
     <color name="toread_background">#009688</color>
+    <color name="toread_background_tree">#58c994</color>
     <color name="tab_text_color">#cbcaca</color>
     <color name="tab_text_chosen">#ffffff</color>
     <color name="message_recycleview">#fff</color>

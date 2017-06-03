@@ -20,7 +20,7 @@
         android:id="@+id/read_change_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
+        android:maxLines="2"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -51,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="添加文章地址URL..."
+            android:hint="添加文章的网络地址..."
+            android:maxLines="3"
             android:textSize="20sp"
             android:layout_gravity="bottom"
             android:textColorHint="#99000000"/>

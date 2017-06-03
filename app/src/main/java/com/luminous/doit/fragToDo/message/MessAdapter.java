@@ -106,6 +106,10 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.ViewHolder> {
                                 handler.deleMessage(m.getTimeStart());
                                 messages = handler.getAllMessages();
                                 notifyDataSetChanged();
+                                TextView textWelcome =(TextView) fragment.getActivity().findViewById(R.id.text_welcome);
+                                int countTodo=handler.findFalseMessageCount();
+                                if (countTodo==0){textWelcome.setText(R.string.text_welcome);}
+                                else{textWelcome.setText("你今天还有"+countTodo+"件事没有做");}
                             }
                         }
                         if(item.getItemId() ==R.id.menu_change){
@@ -166,7 +170,7 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.ViewHolder> {
                 }
                 TextView textWelcome =(TextView) fragment.getActivity().findViewById(R.id.text_welcome);
                 int countTodo=handler.findFalseMessageCount();
-                if (countTodo==0){textWelcome.setText("添加事件 开始行动吧");}
+                if (countTodo==0){textWelcome.setText(R.string.text_welcome_checked);}
                 else{textWelcome.setText("你今天还有"+countTodo+"件事没有做");}
 
             }

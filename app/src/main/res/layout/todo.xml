@@ -35,8 +35,7 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:text="你今天还有 2 件事没有做"
+            android:text="开始行动吧"
             android:textColor="#eeeeee"
             android:textSize="28sp" />
 

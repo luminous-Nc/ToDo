@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
             android:text="标题"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="28sp"
             android:paddingTop="3dp"
             android:paddingLeft="10dp"

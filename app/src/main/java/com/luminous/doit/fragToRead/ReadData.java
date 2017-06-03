@@ -1,11 +1,15 @@
 package com.luminous.doit.fragToRead;
 
 import android.content.Intent;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -16,6 +20,8 @@ import com.luminous.doit.R;
 
 import java.util.Random;
 
+import static android.view.KeyEvent.KEYCODE_BACK;
+
 
 public class ReadData extends AppCompatActivity {
     public static final String PAGE_ID = "pageID";
@@ -23,6 +29,7 @@ public class ReadData extends AppCompatActivity {
     public static final String PAGE_SUMMARY="pageSummary";
     public static final String PAGE_URL="pageURL";
     public static final String PAGE_DATE="pageDate";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,27 @@ public class ReadData extends AppCompatActivity {
         readShowWeb.getSettings().setJavaScriptEnabled(true);
         readShowWeb.setWebViewClient(new WebViewClient());
         readShowWeb.loadUrl(pageURL);
+        readShowWeb.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();    //表示等待证书响应
+                // handler.cancel();      //表示挂起连接，为默认方式
+                // handler.handleMessage(null);    //可做其他处理
+            }
+        });
+    }
+    @Override
+    protected void onDestroy() {
+        WebView readShowWeb= (WebView)findViewById(R.id.read_show_web);
+        if (readShowWeb != null) {
+            readShowWeb.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            readShowWeb.clearHistory();
+
+            ((ViewGroup) readShowWeb.getParent()).removeView(readShowWeb);
+            readShowWeb.destroy();
+            readShowWeb = null;
+        }
+        super.onDestroy();
     }
 
     @Override
@@ -86,5 +114,13 @@ public class ReadData extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        WebView readShowWeb= (WebView)findViewById(R.id.read_show_web);
+        if ((keyCode == KEYCODE_BACK) && readShowWeb.canGoBack()) {
+            readShowWeb.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

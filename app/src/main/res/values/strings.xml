@@ -8,4 +8,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="send_to">分了个享</string>
+    <string name="text_welcome">开始行动吧</string>
+    <string name="text_welcome_checked">再添加一些要做的事吧</string>
 </resources>

@@ -9,34 +9,34 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_bigpiture"
-        app:contentScrim="@color/toread_background"
+        app:contentScrim="@color/toread_background_tree"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toreadtab_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/toread_background"
+            app:contentScrim="@color/toread_background_tree"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_bigpiture"
         android:orientation="vertical"
-        android:background="#009688">
-        <TextView
+        android:background="#2db083">
+        <com.luminous.doit.fragToRead.WeatherAnimView
+            android:id="@+id/weather"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_marginLeft="20dp"
-            />
+            android:layout_height="350dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="left|bottom"
             android:text="开始阅读吧"
             android:textColor="#eeeeee"
             android:textSize="40sp" />
-    </LinearLayout>
+    </FrameLayout>
         <android.support.v7.widget.Toolbar
             android:id="@+id/toreadtab_toolbar"
             android:layout_width="match_parent"
@@ -72,6 +72,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:src="@drawable/add"
-        app:backgroundTint="@color/toread_background"
+        app:backgroundTint="@color/toread_background_tree"
         app:rippleColor="#00695c"/>
 </android.support.design.widget.CoordinatorLayout>
