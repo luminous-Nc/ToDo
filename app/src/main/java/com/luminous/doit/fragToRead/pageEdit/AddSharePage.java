@@ -112,12 +112,12 @@ public class AddSharePage extends AppCompatActivity {
         finish();
     }
     private String getShareURL(String allContent){
-        return    allContent = allContent.substring(allContent.indexOf("http://"));//,allContent.indexOf(" ")-1);
+        return    allContent = allContent.substring(allContent.indexOf("http"));//,allContent.indexOf(" ")-1);
     }
     private String getShareTitle(String allContent){
 
         if(allContent.indexOf("【")!=-1){
-            return allContent.substring(allContent.indexOf("【")+1,allContent.indexOf("】")-1);
+            return allContent.substring(allContent.indexOf("【")+1,allContent.indexOf("】"));
         }else {
             return "";
         }

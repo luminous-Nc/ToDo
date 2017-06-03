@@ -43,9 +43,12 @@ public class FragToRead extends Fragment {
     private PageAdapter adapter_page;//适配器 这里写了下面就不能写PageAdapter类名 否则会有空对象
 
     LayoutToRead layoutToRead;
-    public FragToRead(Context context){
-        layoutToRead= new LayoutToRead(context);}
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Context context = this.getActivity().getBaseContext();
+        layoutToRead= new LayoutToRead(context);
+    }
 
     private class LayoutToRead extends LinearLayout {
             public LayoutToRead(Context context) {

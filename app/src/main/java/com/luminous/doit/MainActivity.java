@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         linearLayout = (LinearLayout) findViewById(R.id.layout_of_tab);
-        frags.add(new FragToDo(getBaseContext()));
-        frags.add(new FragToRead(getBaseContext()));
+        frags.add(new FragToDo());
+        frags.add(new FragToRead());
         tabs.add("To Do");
         tabs.add("To Read");
         adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {

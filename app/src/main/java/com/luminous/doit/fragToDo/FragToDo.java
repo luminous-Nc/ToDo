@@ -83,12 +83,18 @@ public class FragToDo extends Fragment {
             }
         }
     };
-    public FragToDo(Context context){
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Context context = this.getActivity().getBaseContext();
         layoutTodo= new LayoutTodo(context);
         messHandler = new MessHandler(context);
         initView(context);
         initEvent();
     }
+
+    public FragToDo(){}
 
     private void initEvent() {
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
