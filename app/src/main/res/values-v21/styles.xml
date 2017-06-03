@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ReadDataTheme" parent="AppTheme">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="colorPrimary">#009688</item>
-        <item name="colorPrimaryDark">#009688</item>
-        <item name="colorAccent">#80cbc4</item>
-
-    </style>
-
-</resources>
+<style name="ReadDataTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <item name="colorPrimary">#009688</item>
+    <item name="colorPrimaryDark">#009688</item>
+    <item name="colorAccent">#80cbc4</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+</style>
+    </resources>

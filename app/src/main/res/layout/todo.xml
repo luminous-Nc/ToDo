@@ -33,6 +33,7 @@
         <TextView
             android:id="@+id/text_welcome"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:text="你今天还有 2 件事没有做"
@@ -50,11 +51,13 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/insert_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:background="@drawable/add"
-        android:id="@+id/insert_button"
+        android:layout_margin="20dp"
+        android:src="@drawable/add"
+        app:backgroundTint="@color/todo_background"
+        app:rippleColor="#283593"/>/>
         />
 </FrameLayout>

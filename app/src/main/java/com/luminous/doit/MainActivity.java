@@ -1,16 +1,22 @@
 package com.luminous.doit;
 
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.luminous.doit.fragToRead.FragToRead;
 import com.luminous.doit.fragToDo.FragToDo;
 import java.util.ArrayList;
+
+import static com.luminous.doit.R.id.toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> frags = new ArrayList<Fragment>();
@@ -19,12 +25,24 @@ public class MainActivity extends AppCompatActivity {
     private FragmentPagerAdapter adapter;//fragmentPager的装备齐
     private TabLayout tabLayout;
     private LinearLayout linearLayout;
+
+    public static int ifNew;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
         initEvent();
+        SharedPreferences.Editor editor=getSharedPreferences("introduce",MODE_PRIVATE).edit();
+        SharedPreferences readIfNew =getSharedPreferences("introduce",MODE_PRIVATE);
+        ifNew = readIfNew.getInt("ifNew",1);
+        Log.e("ifNEw",Integer.toString(ifNew));
+        if (ifNew==1){
+            editor.putInt("ifNew",3);
+            editor.apply();
+            ifNew=3;
+            Log.e("changeifnew",Integer.toString(ifNew));
+        }else{ifNew=2;}
     }
 
     private void initEvent() {
@@ -50,9 +68,13 @@ public class MainActivity extends AppCompatActivity {
         switch (position){
             case 0:
                 linearLayout.setBackgroundResource(R.color.todo_background);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.todo_background));}
                 break;
             case 1:
                 linearLayout.setBackgroundResource(R.color.toread_background);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(getResources().getColor(R.color.toread_background));}
                 break;
         }
     }
@@ -81,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
         };
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        //tabLayout.OnTabSelectedListener
         viewPager.setCurrentItem(0);
     }
+    //int colorFrom = linearLayout.getDrawingCacheBackgroundColor();
+    //int colorTo =
+    //ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
 }

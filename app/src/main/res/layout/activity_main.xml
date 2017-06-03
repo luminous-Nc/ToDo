@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eeeeee"
+    android:fitsSystemWindows="true"
     tools:context="com.luminous.doit.MainActivity">
     <LinearLayout
         android:orientation="vertical"
@@ -16,14 +17,14 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:background="@color/todo_background"
             android:id="@+id/layout_of_tab"
             >
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 app:tabMode="fixed"
                 app:tabIndicatorHeight="0sp"
                 app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"

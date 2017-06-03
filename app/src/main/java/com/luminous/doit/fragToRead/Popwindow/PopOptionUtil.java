@@ -1,6 +1,7 @@
 package com.luminous.doit.fragToRead.Popwindow;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,10 @@ public class PopOptionUtil extends PopupWindow {
         popDelete = (Button) popupView.findViewById(R.id.pop_delete);
         popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());//设置背景
+        popupWindow.setBackgroundDrawable((new ColorDrawable(0x00000000)));//设置背景
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true); //设置点击menu以外其他地方以及返回键退出
+        popupWindow.setOutsideTouchable(true);
         popupView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         popupWidth = popupView.getMeasuredWidth();//获取弹出窗口宽度
         popupHeight = popupView.getMeasuredHeight();//获取弹出窗口高度

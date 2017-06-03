@@ -7,7 +7,7 @@
         android:id="@+id/pop_edit"
         android:layout_width="70dp"
         android:layout_height="80dp"
-        android:background="#b2dfdb"
+        android:background="#80cbc4"
         android:text="编辑"
         android:textColor="#99000000"
         android:textSize="20sp"/>

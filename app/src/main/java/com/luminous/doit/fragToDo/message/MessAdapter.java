@@ -152,6 +152,7 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.ViewHolder> {
                 MessHandler handler = new MessHandler(parent.getContext());
                 int position = viewHolder.getAdapterPosition();
                 Message m = messages.get(position);
+
                 if(isChecked){
                     handler.finish(m.getTimeStart());
                     viewHolder.checkBox.setTextColor(ContextCompat.getColor(parent.getContext(),R.color.message_when_checked));
@@ -163,6 +164,11 @@ public class MessAdapter extends RecyclerView.Adapter<MessAdapter.ViewHolder> {
                     viewHolder.textView.setTextColor(ContextCompat.getColor(parent.getContext(),R.color.message_when_not_checked));
                     m.setFinish("false");
                 }
+                TextView textWelcome =(TextView) fragment.getActivity().findViewById(R.id.text_welcome);
+                int countTodo=handler.findFalseMessageCount();
+                if (countTodo==0){textWelcome.setText("添加事件 开始行动吧");}
+                else{textWelcome.setText("你今天还有"+countTodo+"件事没有做");}
+
             }
         });
         return viewHolder;

@@ -30,7 +30,7 @@
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
 
-    <style name="ReadDataTheme" parent="AppTheme">
+    <style name="ReadDataTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">#009688</item>
         <item name="colorPrimaryDark">#009688</item>
         <item name="colorAccent">#80cbc4</item>

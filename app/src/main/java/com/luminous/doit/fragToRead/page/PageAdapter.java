@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -59,6 +60,23 @@ public class PageAdapter extends RecyclerView.Adapter <PageAdapter.ViewHolder> {
             toReadData.putExtra(ReadData.PAGE_DATE,DateforInt);
             mContext.startActivity(toReadData);
         }
+        });
+        holder.cardView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        holder.cardView.setBackgroundResource(R.color.page_when_press);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        holder.cardView.setBackgroundResource(R.color.page_when_normal);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        holder.cardView.setBackgroundResource(R.color.page_when_normal);
+                        break;
+                }
+                return false;
+            }
         });
         return holder;
     }

@@ -2,11 +2,13 @@ package com.luminous.doit.fragToRead.pageEdit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,25 +63,35 @@ public class ChangePage extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.read_add_sure:
+            adddata();
 
-                TextView readChangeArticle = (TextView) findViewById(R.id.read_change_article);
-                TextView readChangeSummary = (TextView) findViewById(R.id.read_change_summary);
-                TextView readChangeURL = (TextView) findViewById(R.id.read_change_URL);
-                Log.d(TAG,"载入了相关布局");
-                Intent pageFront = getIntent();
-                int id=pageFront.getIntExtra(ID,1);
-                Log.d(TAG,"传递过来的id是："+ String.valueOf(id));
-                String newArticle = readChangeArticle.getText().toString();
-                String newSummary = readChangeSummary.getText().toString();
-                String newURL = readChangeURL.getText().toString();
-                Date newDate = new Date();
-                Log.d(TAG,"信息是："+"-->"+newArticle+"-->"+newSummary+"-->"+newURL);
-                DataSupport.deleteAll(Read_Page.class, "id = ?",String.valueOf(id));
-                Read_Page read_page = new Read_Page(1,newArticle,newSummary,newURL,newDate);
-                read_page.save();
-                Toast.makeText(this,"阅读内容已修改",Toast.LENGTH_SHORT).show();
-                finish();
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);}
+
+    public void adddata(){
+        EditText readChangeArticle = (EditText) findViewById(R.id.read_change_article);
+        EditText readChangeSummary = (EditText) findViewById(R.id.read_change_summary);
+        EditText readChangeURL = (EditText) findViewById(R.id.read_change_URL);
+        Log.d(TAG,"载入了相关布局");
+        Intent pageFront = getIntent();
+        int id=pageFront.getIntExtra(ID,1);
+        Log.d(TAG,"传递过来的id是："+ String.valueOf(id));
+        String newArticle = readChangeArticle.getText().toString();
+        String newSummary = readChangeSummary.getText().toString();
+        String newURL = readChangeURL.getText().toString();
+        Date newDate = new Date();
+        if(newArticle.equals("")||newArticle==null){
+            Toast.makeText(ChangePage.this,"你还没有输入标题呀",Toast.LENGTH_SHORT).show();
+            Log.e("wrong","1");
+            readChangeArticle.setHintTextColor(ContextCompat.getColor(getBaseContext(),R.color.insertMessage_when_wrong));
+            return;
+        }
+        Log.d(TAG,"信息是："+"-->"+newArticle+"-->"+newSummary+"-->"+newURL);
+        DataSupport.deleteAll(Read_Page.class, "id = ?",String.valueOf(id));
+        Read_Page read_page = new Read_Page(1,newArticle,newSummary,newURL,newDate);
+        read_page.save();
+        Toast.makeText(this,"阅读内容已修改",Toast.LENGTH_SHORT).show();
+        finish();
+
     }
 }
