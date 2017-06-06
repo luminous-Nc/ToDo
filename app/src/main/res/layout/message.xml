@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
     <CheckBox
         android:text="20:40"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
@@ -21,14 +21,15 @@
         android:id="@+id/checkBox"
         />
     <TextView
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:text="么么哒"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:maxLines="1"
+        android:maxLines="2"
         android:ellipsize="end"
         android:layout_weight="1" />
     </LinearLayout>

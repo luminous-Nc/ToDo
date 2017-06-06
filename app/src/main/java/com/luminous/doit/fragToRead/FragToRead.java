@@ -26,6 +26,8 @@ import com.luminous.doit.fragToRead.pageEdit.ChangePage;
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -87,20 +89,29 @@ public class FragToRead extends Fragment {
         return layoutToRead;
        }
 
-        private void initPages(){
+    private void initPages(){
+        Log.e("init","initPages");
+        Log.e("init ifnew",Integer.toString(ifNew));
+        if (ifNew == 3) {
             Log.e("init","initPages");
-            Log.e("init ifnew",Integer.toString(ifNew));
-            if (ifNew == 3) {
-                Log.e("init","initPages");
-                Read_Page read_page = new Read_Page(1,"欢迎使用稍后阅读","有太多文章看不完？利用碎片时间阅读吧","",new Date());
-                Read_Page read_page1=new Read_Page(2,"要添加文章？","任意网页中点击分享，选择ToDo即可添加","",new Date());
-                Read_Page read_page2=new Read_Page(3,"要修改文章？","长按文章，即可编辑或删除","",new Date());
-                read_page.save();
-                read_page1.save();
-                read_page2.save();
-            };//pages是自己定义的类的数组
-            changePages();
-        }
+            /*String dateString1 = "2016-11-08 11:35:11";
+            try {
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date1 =  sdf.parse(dateString1);}
+            catch (ParseException e) {
+                System.out.println(e.getMessage());}*/
+
+            Read_Page read_page = new Read_Page(1,"欢迎使用稍后阅读","有太多文章看不完？利用碎片时间阅读吧","",new Date());
+            Read_Page read_page1=new Read_Page(2,"要添加文章？","任意网页中点击分享，选择ToDo即可添加","",new Date());
+            Read_Page read_page2=new Read_Page(3,"要修改文章？","在列表中长按文章，即可编辑或删除","",new Date());
+            Read_Page read_page3=new Read_Page(4,"示例文章","Hello,world是什么？","https://wapbaike.baidu.com/item/hello%20world/85501?adapt=1&fr=aladdin",new Date());
+            read_page.save();
+            read_page1.save();
+            read_page2.save();
+            read_page3.save();
+            //pages是自己定义的类的数组
+            changePages();}
+    }
     private void changePages(){
         List<Read_Page> newList = DataSupport.order("pageDate desc").find(Read_Page.class);
         pageList.addAll(newList);//注意要将数据复制过来，而不是直接使用，不然无法更新数据

@@ -2,7 +2,6 @@ package com.luminous.doit.fragToDo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,14 +20,9 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.luminous.doit.R;
-import com.luminous.doit.database.MySQLiteHelper;
 import com.luminous.doit.fragToDo.clock.ClockView;
 import com.luminous.doit.fragToDo.message.MessAdapter;
 import com.luminous.doit.fragToDo.message.MessHandler;
-
-import java.util.Calendar;
-
-import static com.luminous.doit.MainActivity.ifNew;
 
 /**
  * Created by 90418 on 2017-05-30.
@@ -36,26 +30,26 @@ import static com.luminous.doit.MainActivity.ifNew;
 
 public class FragToDo extends Fragment {
     private LayoutTodo layoutTodo;
-    //æ»‘åŠ¨æ§ä»¶MessageAdapter
+    //»¬¶¯¿Ø¼şMessageAdapter
     private RecyclerView recyclerView;
-    //æ—¶é’Ÿæ§ä»¶
+    //Ê±ÖÓ¿Ø¼ş
     private ClockView clockView;
-    //æ–‡å­—æ§ä»¶
+    //ÎÄ×Ö¿Ø¼ş
     private TextClock textClock;
 
     public  TextView textWelcome;
-    //ç”¨äºçº¿ç¨‹ç±»åœæ­¢æ»‘åŠ¨ï¼Œé˜²æ­¢å‡ºç°æ»‘åŠ¨è¿‡ç•Œ
+    //ÓÃÓÚÏß³ÌÀàÍ£Ö¹»¬¶¯£¬·ÀÖ¹³öÏÖ»¬¶¯¹ı½ç
     private int countTodo;
     private volatile boolean scroll=true;
-    //æ›´æ–°å‘ä¸Šæ»‘åŠ¨
+    //¸üĞÂÏòÉÏ»¬¶¯
     private final int SCROLL_UP = 0;
-    //æ›´æ–°å‘ä¸‹æ»‘åŠ¨
+    //¸üĞÂÏòÏÂ»¬¶¯
     private final int SCROLL_DOWN = 1;
-    //å°†æ–‡å­—æ—¶é’Ÿéšè—ï¼Œæ—¶é’Ÿå‡ºç°
+    //½«ÎÄ×ÖÊ±ÖÓÒş²Ø£¬Ê±ÖÓ³öÏÖ
     private final int SET_COLOR = 2;
-    //å°†æ—¶é’Ÿéšè—ï¼Œæ–‡å­—æ—¶é’Ÿå‡ºç°
+    //½«Ê±ÖÓÒş²Ø£¬ÎÄ×ÖÊ±ÖÓ³öÏÖ
     private final int SET_TIME =3;
-    //æ›´æ–°UI
+    //¸üĞÂUI
     private MessAdapter adapter;
     private MessHandler messHandler;
     private FloatingActionButton button;
@@ -63,105 +57,98 @@ public class FragToDo extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            //é˜»æ­¢ç»§ç»­æ»‘åŠ¨
+            //×èÖ¹¼ÌĞø»¬¶¯
             if(recyclerView.getTop()>1060||recyclerView.getTop()<300)
                 scroll = false;
-            //å‘ä¸Šæ»‘åŠ¨
+            //ÏòÉÏ»¬¶¯
             if(msg.what==SCROLL_UP){
                 recyclerView.layout(recyclerView.getLeft(),recyclerView.getTop()-5,recyclerView.getRight(),recyclerView.getBottom());
                 recyclerView.postInvalidate();
             }
-            //å‘ä¸‹æ»‘åŠ¨æ—¶è¦å°†æ–‡å­—æ§ä»¶ä¸€èµ·æ»‘åŠ¨ï¼Œå¦åˆ™ä¼šå‡ºç°ç©ºç™½
+            //ÏòÏÂ»¬¶¯Ê±Òª½«ÎÄ×Ö¿Ø¼şÒ»Æğ»¬¶¯£¬·ñÔò»á³öÏÖ¿Õ°×
             if(msg.what==SCROLL_DOWN){
                 recyclerView.layout(recyclerView.getLeft(),recyclerView.getTop()+5,recyclerView.getRight(),recyclerView.getBottom());
                 textClock.layout(textClock.getLeft(),textClock.getTop(),textClock.getRight(),textClock.getBottom()+5);
                 recyclerView.postInvalidate();
             }
-            //å°†æ—¶é’Ÿéšè—ï¼Œæ–‡å­—æ—¶é’Ÿå‡ºç°
+            //½«Ê±ÖÓÒş²Ø£¬ÎÄ×ÖÊ±ÖÓ³öÏÖ
             if(msg.what==SET_TIME){
                 clockView.setVisibility(View.GONE);
                 textClock.setVisibility(View.VISIBLE);
             }
-            //å°†æ–‡å­—æ—¶é’Ÿéšè—ï¼Œæ—¶é’Ÿå‡ºç°
+            //½«ÎÄ×ÖÊ±ÖÓÒş²Ø£¬Ê±ÖÓ³öÏÖ
             if(msg.what==SET_COLOR){
                 clockView.setVisibility(View.VISIBLE);
                 textClock.setVisibility(View.GONE);
             }
         }
     };
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Context context = this.getActivity().getBaseContext();
+    public FragToDo(Context context){
         layoutTodo= new LayoutTodo(context);
         messHandler = new MessHandler(context);
         initView(context);
         initEvent();
-        initUserGuide();
     }
-
-    public FragToDo(){}
 
     private void initEvent() {
         recyclerView.setOnTouchListener(new View.OnTouchListener() {
-            private  int last;//å¼€å§‹æ—¶çš„é«˜åº¦
+            private  int last;//¿ªÊ¼Ê±µÄ¸ß¶È
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()){
-                    //è§¦æ‘¸æ—¶é—´å¼€å§‹
+                    //´¥ÃşÊ±¼ä¿ªÊ¼
                     case MotionEvent.ACTION_DOWN:
-                        scroll = true;//ä¸‹æ‹‰æ§åˆ¶åˆ·æ–°
-                        last = (int) event.getRawY();//å¼€å§‹æ—¶çš„é«˜åº¦
+                        scroll = true;//ÏÂÀ­¿ØÖÆË¢ĞÂ
+                        last = (int) event.getRawY();//¿ªÊ¼Ê±µÄ¸ß¶È
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        //æ»‘åŠ¨è·ç¦»
+                        //»¬¶¯¾àÀë
                         int dy = (int) event.getRawY() - last;
-                        //æ–°çš„é«˜åº¦
+                        //ĞÂµÄ¸ß¶È
                         int r = recyclerView.getTop()+dy;
                         Log.e("r", String.valueOf(r));
                         Log.e("top", String.valueOf(recyclerView.getTop()));
-                        //åœ¨æ»‘åŠ¨è¿‡ç¨‹ä¸­è¶…è¿‡äº†ä¸Šç•Œï¼Œåˆ™ç›´æ¥è®¾ç½®æ•ˆæœ
+                        //ÔÚ»¬¶¯¹ı³ÌÖĞ³¬¹ıÁËÉÏ½ç£¬ÔòÖ±½ÓÉèÖÃĞ§¹û
                         if(r<300&&clockView.getVisibility()==View.VISIBLE){
                             Message m = new Message();
                             m.what = SET_TIME;
                             handler.sendMessage(m);
                         }
-                        //æ‰€æœ‰æ»‘åŠ¨çš„èŒƒå›´
+                        //ËùÓĞ»¬¶¯µÄ·¶Î§
                         if(r>=300&&r<1066){
-                            //æ§ä»¶ä¸ºæ—¶é’Ÿæ—¶
+                            //¿Ø¼şÎªÊ±ÖÓÊ±
                             if(clockView.getVisibility()==View.VISIBLE){
                                 recyclerView.layout(recyclerView.getLeft(),r,recyclerView.getRight(),recyclerView.getBottom());
                                 recyclerView.postInvalidate();
                             }else {
-                                //æ§ä»¶ä¸ºæ–‡å­—æ—¶ï¼Œå¹¶ä¸”ä¸èƒ½æ»‘åŠ¨
+                                //¿Ø¼şÎªÎÄ×ÖÊ±£¬²¢ÇÒ²»ÄÜ»¬¶¯
                                 if (!recyclerView.canScrollVertically(-1)){
                                     recyclerView.layout(recyclerView.getLeft(),r,recyclerView.getRight(),recyclerView.getBottom());
-                                    //åŒæ—¶è®¾ç½®æ—¶é’Ÿçš„åº•éƒ¨
+                                    //Í¬Ê±ÉèÖÃÊ±ÖÓµÄµ×²¿
                                     textClock.layout(textClock.getLeft(),textClock.getTop(),textClock.getRight(),r);
                                     recyclerView.postInvalidate();
                                 }
                             }
                         }
-                        //æŒç»­æ»‘åŠ¨æ—¶
+                        //³ÖĞø»¬¶¯Ê±
                         last =(int) event.getRawY();
                         break;
                     case MotionEvent.ACTION_UP:
-                        //è®¾ç½®æ»šåŠ¨è¿‡ç¨‹
+                        //ÉèÖÃ¹ö¶¯¹ı³Ì
                         if(clockView.getVisibility()==View.VISIBLE){
                             if(recyclerView.getTop()<750){
-                                //ä¸Šæ»‘
+                                //ÉÏ»¬
                                 scroll();
                             }else {
-                                //å›åˆ°åŸä½
+                                //»Øµ½Ô­Î»
                                 recyclerView.layout(recyclerView.getLeft(),1066,recyclerView.getRight(),recyclerView.getBottom());
                             }
                         }else {
                             if(recyclerView.getTop()>400){
-                                //ä¸‹æ»‘
+                                //ÏÂ»¬
                                 scroll();
                             }else {
-                                //å›åˆ°åŸä½
+                                //»Øµ½Ô­Î»
                                 recyclerView.layout(recyclerView.getLeft(),300,recyclerView.getRight(),recyclerView.getBottom());
                             }
                         }
@@ -185,12 +172,12 @@ public class FragToDo extends Fragment {
         textClock = (TextClock) layoutTodo.findViewById(R.id.textClock);
         textWelcome=(TextView)layoutTodo.findViewById(R.id.text_welcome);
         countTodo=messHandler.findFalseMessageCount();
-        if (countTodo==0){textWelcome.setText(R.string.text_welcome);}
-        else{textWelcome.setText("ä½ ä»Šå¤©è¿˜æœ‰"+countTodo+"ä»¶äº‹æ²¡æœ‰åš");}
+        if (countTodo==0){textWelcome.setText("Ìí¼ÓÊÂ¼ş ¿ªÊ¼ĞĞ¶¯°É");}
+        else{textWelcome.setText("Äã½ñÌì»¹ÓĞ"+countTodo+"¼şÊÂÃ»ÓĞ×ö");}
         button = (FloatingActionButton) layoutTodo.findViewById(R.id.insert_button);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
-        //ä»è¿™ä¸ªä¸­è·å¾—æ•°æ®åº“ä¸­çš„ArrayList
+        //´ÓÕâ¸öÖĞ»ñµÃÊı¾İ¿âÖĞµÄArrayList
         adapter = new  MessAdapter(this);
         messHandler = new MessHandler(context);
         recyclerView.setAdapter(adapter);
@@ -235,13 +222,13 @@ public class FragToDo extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        //è¿™é‡Œå†™å‡ºå½“Fragmentå¼€å§‹æ—¶è®¾ç½®Message
+        //ÕâÀïĞ´³öµ±Fragment¿ªÊ¼Ê±ÉèÖÃMessage
         Log.e("fragTay","start");
         adapter.initMessages();
         textWelcome=(TextView)layoutTodo.findViewById(R.id.text_welcome);
         countTodo=messHandler.findFalseMessageCount();
-        if (countTodo==0){textWelcome.setText(R.string.text_welcome);}
-        else{textWelcome.setText("ä½ ä»Šå¤©è¿˜æœ‰"+countTodo+"ä»¶äº‹æ²¡æœ‰åš");}
+        if (countTodo==0){textWelcome.setText("Ìí¼ÓÊÂ¼ş ¿ªÊ¼ĞĞ¶¯°É");}
+        else{textWelcome.setText("Äã½ñÌì»¹ÓĞ"+countTodo+"¼şÊÂÃ»ÓĞ×ö");}
 
     }
     private class LayoutTodo extends LinearLayout {
@@ -249,27 +236,5 @@ public class FragToDo extends Fragment {
             super(context);
             LayoutInflater.from(context).inflate(R.layout.todo,this);
         }
-    }
-    private void initUserGuide(){
-        MySQLiteHelper helper;
-        helper = MySQLiteHelper.getIntance(getActivity());
-
-        Log.e("init","ready to Initial Things");
-        Log.e("init ifnew",Integer.toString(ifNew));
-        if (ifNew == 3) {
-            String startTime1 = "00:00";
-            String stopTime1 = "00:01";
-            String theMessage1 = "é•¿æŒ‰äº‹ä»¶å¯ä»¥ä¿®æ”¹æˆ–åˆ é™¤";
-            String theMessage2 = "æœªæ‰“é’©çš„äº‹ä»¶åœ¨å³å°†å¼€å§‹æ—¶ä¼šæœ‰æé†’";
-            Calendar c = Calendar.getInstance();
-            String date1 = c.get(Calendar.YEAR)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DAY_OF_MONTH);
-            SQLiteDatabase db = helper.getWritableDatabase();
-            String sql = "insert into message values ('"+startTime1+"','"+stopTime1+"','"+theMessage1+"','"+date1+"','true')";
-            db.execSQL(sql);
-            String sql2 = "insert into message values ('"+"00:01"+"','"+"00:02"+"','"+theMessage2+"','"+date1+"','false')";
-            db.execSQL(sql2);
-            db.close();
-            Log.e("init","initThings");
-        };//pagesæ˜¯è‡ªå·±å®šä¹‰çš„ç±»çš„æ•°ç»„
     }
 }

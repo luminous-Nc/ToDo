@@ -36,7 +36,7 @@ public class InsetMessage extends AppCompatActivity {
     private TimePicker start;
     private TimePicker stop;
     private EditText massage;
-    private MySQLiteHelper helper;
+    public MySQLiteHelper helper;
     private boolean isAdd = true;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -116,6 +116,8 @@ public class InsetMessage extends AppCompatActivity {
         String stopTime = ""+(stop.getHour()<10 ? "0"+stop.getHour():stop.getHour())+":"+(stop.getMinute()<10 ? "0"+stop.getMinute():stop.getMinute());
         String theMessage = massage.getText().toString();
         Log.e("message",theMessage);
+        Log.e("startTIme",startTime);
+        Log.e("stoptime",stopTime);
         if(theMessage.equals("")||theMessage==null){
             Toast.makeText(InsetMessage.this,"你还没有输入想做的事呢",Toast.LENGTH_LONG).show();
             Log.e("wrong","1");
